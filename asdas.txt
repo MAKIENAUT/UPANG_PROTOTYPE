@@ -1,0 +1,234 @@
+It was developed with a purpose of ensuring privacy, authentication, and data integrity in Internet communications.
+
+SECURITY SOCKETS LAYER
+
+SSL
+
+SSL was developed by _____ in the year 1995.
+
+NETSCAPE
+
+SSL ______data that is transmitted across the web.
+
+ENCRYPTS
+
+ENCRYPT
+
+An authentication process between two communicating device.
+
+HANDSHAKE
+
+Verifying that the data is not tampered with before reaching its intended recipient.
+
+DATA INTEGRITY
+
+INTEGRITY
+
+The ______ key makes encryption and authentication possible.
+
+PUBLIC
+
+TLS is a widely adopted security protocol designed to facilitate privacy and data security for communications over the Internet.
+
+1. TLS
+
+SSL is the predecessor to the modern TLS encryption used today.
+
+1. SSL
+
+CSP is a security standard that provides an additional layer of protection from cross-site scripting.
+
+1. CSP
+
+HTTP is a prescribed order and syntax for presenting information used for transferring data over a network.
+
+1. HTTP
+
+A user’s browser generates HTTP _____ as the user interacts with web properties.
+
+REQUEST
+
+REQUESTS
+
+It provides challenges that are difficult for computers to perform but relatively easy for humans.
+
+CAPTCHA
+
+It is a security process that cross-verifies users with two different forms of identification
+
+TWO-FACTOR AUTHENTICATION
+
+TWO FACTOR AUTHENTICATION
+
+2FA
+
+It is a common attack vector that injects malicious code into a vulnerable web application.
+
+CROSS-SITE SCRIPTING
+
+CROSS SITE SCRIPTING
+
+XSS
+
+A multi-factor authentication method that is something the user knows.
+
+KNOWLEDGE FACTOR
+
+KNOWLEDGE FACTORS
+
+KNOWLEDGE
+
+A multi-factor authentication method that is something the user owns.
+
+POSSESSION FACTOR
+
+POSSESSION
+
+A multi-factor authentication method that is something the user has.
+
+INHERENCE FACTOR
+
+INHERENCE
+
+Cross-site scripting can be used to steal cookies, compromise data integrity, execute code and trick users into submitting information to an attacker.
+
+TRUE
+
+
+CAPTCHAs can prevent poll skewing by ensuring that each vote is entered by a human.
+
+TRUE
+
+
+It occurs when a malicious script is injected directly into a vulnerable web application.
+
+STORED XSS
+
+STORED CROSS-SITE SCRIPTING
+
+It involves the reflecting of a malicious script off of a web application, onto a user’s browser.
+
+REFLECTED XSS
+
+REFLECTED CROSS-SITE SCRIPTING
+
+Stored XSS is also known as _________
+
+PERSISTENT XSS
+
+To successfully execute a stored XSS attack, a perpetrator has to locate a vulnerability in a web application and then inject malicious script into its server.
+
+TRUE
+
+
+It is a defensive measure against any attacks that rely on executing malicious content in a trusted web context, or other attempts to circumvent the same-origin policy.
+
+CSP
+
+CONTENT SECURITY PROTOCOL
+
+It describes where we can load fonts from.
+
+FONT-SRC
+
+It describes where we can load audio and video files from
+
+MEDIA-SRC
+
+It describe which sites can load this site in an iframe.
+
+FRAME-ANCESTORS
+
+A source list where we can only load resources from the same origin
+
+SELF
+
+A source list where we can only load resources from data schema
+
+DATA
+
+A source list where we can only load resources if it matches the hash
+
+SHA256
+
+It allows dynamic code evaluation.
+
+UNSAFE-EVAL
+
+Meaning of SSL
+
+SECURITY SOCKETS LAYER
+
+Meaning of HTTP
+
+HYPERTEXT TRANSFER PROTOCOL
+
+Meaning of HTTPS
+
+HYPERTEXT TRANSFER PROTOCOL SECURE
+
+Meaning of TLS
+
+TRANSPORT LAYER SECURITY
+
+Meaning of 2FA
+
+TWO-FACTOR AUTHENTICATION
+
+TWO FACTOR AUTHENTICATION
+
+Meaning of XSS
+
+CROSS-SITE SCRIPTING
+
+Meaning of CSP
+
+CONTENT SECURITY POLICY
+
+It uses TLS (SSL) to encrypt normal HTTP requests and responses and to sign those requests and responses digitally
+
+HTTPS
+
+HYPERTEXT TRANSFER PROTOCOL SECURE
+
+It occurs when an attacker, masquerading as a trusted entity, dupes a victim into opening an email, instant message, or text message.
+
+PHISHING
+
+An attack where hackers send these emails to any email address they can obtain.
+
+EMAIL PHISHING
+
+It’s a more in-depth version of phishing that requires special knowledge about an organization, including its power structure.
+
+SPEAR PHISHING
+
+An attack that delivers a message to a cell phone through SMS that contains a clickable link or a return phone number.
+
+SMISHING
+
+An attack that takes advantage of human, system, network, and software vulnerabilities to infect the victim’s device.
+
+RANSOMWARE
+
+A ransomware attack that was allegedly created by the United States National Security Agency and leaked by the Shadow Brokers group.
+
+WANNACRY
+
+A ransomware attack that has the ability to encrypt over 160 file types and spreads by tricking victims to install it via fake emails with infected attachments.
+
+LOCKY
+
+It scans and maps locations for targeted file types, including locally stored files.
+
+EXECUTION
+
+It performs a key exchange with the Command and Control Server.
+
+ENCRYPTION
+
+Identify infected machines, disconnect from networks and lock shared drives to prevent encryption.
+
+ISOLATE
+
+Check what strain on ransomware you w

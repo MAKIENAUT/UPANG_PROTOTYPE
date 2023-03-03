@@ -1,0 +1,12 @@
+individual voter status display
+time and date of voting
+block screenshot feature
+summary of votes (receipt)
+ballot submit confirmation
+phone compatible 
+add email as credential (give placeholder email for non-email students)
+junior high cant vote representatives and gr12 reps
+delete voter if suspicious
+add login time for voters
+replace COMELEC with APEC
+deadline 

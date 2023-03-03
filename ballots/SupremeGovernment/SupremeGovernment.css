@@ -1,0 +1,392 @@
+* {
+   margin: 0;
+   padding: 0;
+}
+body {
+   padding: 15px 100px 30px 100px;
+   width: 100%;
+   box-sizing: border-box;
+   background-color: white;
+   background-size: cover;
+   background-repeat: repeat;
+   background-position: center;
+   background-image: url(../../photos/background.jpg);
+
+   gap: 15px;
+   display: flex;
+   align-items: center;
+   flex-direction: column;
+   justify-content: flex-start;
+}
+
+   header {
+      width: 100%;
+      height: 100px;
+      box-sizing: border-box;
+
+      gap: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+   }
+      .logos {
+         width: 70%;
+         height: 100%;
+         display: flex;
+         align-items: center;
+         box-sizing: border-box;
+         justify-content: center;
+      }
+         .phinma_seal {
+            height: 100%;
+         }
+         .main_title {
+            width: 100%;
+            box-sizing: border-box;
+   
+            gap: 10px;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+         }
+            .main_title h1, 
+            .main_title h3 {
+               margin: 0;
+               color: rgb(62, 98, 19) ;
+               box-sizing: border-box;
+               font-family: "Merriweather", "Georgia", serif;
+            }
+               .main_title h1 {
+                  font-size: 35px;
+               }
+               .main_title h3 {
+                  font-size: 20px;
+               }
+         .upang_seal {
+            height: 100%;
+         }
+   main {
+      width: 85%;
+      height: fit-content;
+      box-sizing: border-box;
+
+      gap: 40px;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+   }
+      .ballot_header {
+         width: 100%;
+         padding: 15px;
+         height: fit-content;
+         box-sizing: border-box;
+         border-radius: 20px 20px 10px 10px;
+         background-color: rgb(62, 98, 19);
+
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+      }
+         .header_left {
+            width: 70%;
+            height: 100%;
+            box-sizing: border-box;
+
+            display: flex;
+            align-items: flex-start;
+            flex-direction: column;
+            justify-content: center;
+         }
+            .header_left h1, 
+            .header_left h2 {
+               margin: 0;
+               color: white;
+               text-align:start;
+               box-sizing: border-box;
+               font-family: "Merriweather", "Georgia", serif;
+            }
+         .header_right {
+            width: 30%;
+            height: 100%;
+            box-sizing: border-box;
+
+            display: flex;
+            align-items: flex-end;
+            flex-direction: column;
+            justify-content: center;
+         }
+            .header_right h3 {
+               margin: 0;
+               color: white;
+               text-align:start;
+               box-sizing: border-box;
+               font-family: "Merriweather", "Georgia", serif;
+            }
+               .header_right h3 b {
+                  color: gold;
+               }
+               b {
+                  color: gold;
+               }
+         .progress-container {
+            width: 70%;
+            height: 8px;
+            background: #ccc;
+            box-sizing: border-box;
+
+            top: 250px;
+            position: absolute;
+            z-index: 9;
+         }
+            .progress-bar {
+               height: 8px;
+               background: gold;
+               box-sizing: border-box;
+               border: 1px solid rgb(62, 98, 19);
+               width: 1%;
+            }
+      .ballot_container {
+         width: 100%;
+         height: fit-content;
+         box-sizing: border-box;
+         position: relative;
+
+         gap: 40px;
+         display: flex;
+         align-items: center;
+         justify-content: space-evenly;
+      }
+         form {
+            width: 100%;
+            padding: 20px;
+            height: fit-content;
+            box-sizing: border-box;
+            border-radius: 10px 10px 20px 20px;
+            background-color: rgb(62, 98, 19);
+
+            gap: 40px;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: space-evenly;
+         }
+            fieldset {
+               width: 100%;
+               padding: 30px 20px;
+               box-sizing: border-box;
+               border-radius: 10px;
+               border: 1px solid white;
+
+               gap: 20px;
+               display: flex;
+               flex-wrap: wrap;
+               align-items: center;
+               justify-content: space-evenly;
+            }
+               legend {
+                  padding: 0 10px;
+                  font-size: 30px;
+                  margin-left: 30px;
+                  color: rgb(255, 215, 0);
+                  font-family: "Merriweather", "Georgia", serif;
+               }
+               input[type="checkbox"], 
+               input[type="radio"]{
+                  display: none;
+               }
+                  input[type="checkbox"] + label, 
+                  input[type="radio"] + label{
+                     width: 270px;
+                     font-size: 18px;
+                     cursor: pointer;
+                     border-radius: 15px;
+                     padding: 10px 15px;
+                     display: inline-block;
+                     box-sizing: border-box;
+                     aspect-ratio: 2.5 / 3.5;
+                     color: rgb(62, 98, 19);
+                     background-color: #fff;
+                     transform: all 500ms ease;
+                     border: 2px solid white;
+
+                     gap: 20px;
+                     display: flex;
+                     align-items: center;
+                     flex-direction: column;
+                     justify-content: center;
+
+                     user-select: none;
+                     -ms-user-select: none;
+                     -webkit-user-select: none;
+                     -moz-user-select: -moz-none;
+                  }
+                     label img {
+                        width: 100%;
+                        border-radius: 15px;
+                        box-sizing: border-box;
+                     }
+                     label .candidate_name {
+                        width: 100%;
+                        box-sizing: border-box;
+                     }
+                        .candidate_name h2, h4 {
+                           width: 100%;
+                           text-align: center;
+                           box-sizing: border-box;
+                        }
+                           .candidate_name h2 {
+                              font-size: 25px;
+                           }
+                     input[type="checkbox"]:checked + label, 
+                     input[type="radio"]:checked + label {
+                        color: white;
+                        box-sizing: border-box;
+                        transition: all 500ms ease;
+                        border: 2px solid goldenrod;
+                        background-color: rgb(62, 98, 19);  
+                     }
+            input[type="submit"] {
+               width: 150px;
+               height: 50px;
+               color: white;
+               font-size: 18px;
+               cursor: pointer;
+               border-radius: 5px;
+               transition: all 0.35s;
+               background-color: transparent;
+               border: 1px solid rgb(255, 255, 255);
+               font-family: "Merriweather", "Georgia", serif;
+            }
+               input[type="submit"]:hover {
+                  color: gold;
+                  border-radius: 10px;
+                  transition: all 0.35s;
+                  border: 1px solid gold;
+                  background-color: rgb(255, 255, 255, 0.1);
+               }
+
+               @media only screen and (max-width: 600px) {
+   * {
+      margin: 0;
+      padding: 0;
+   }
+
+   body{
+      padding: 0;
+   }
+      header {
+         height: 75px;
+      }
+         .logos {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            padding: 0 10px;
+         }
+            .main_title {
+               height: 100%;
+            }
+               .main_title h1 {
+                  font-size: 20px;
+                  text-align: center;
+               }
+               .main_title h3 {
+                  font-size: 13px;
+                  text-align: center;
+               }
+         .phinma_seal, 
+         .upang_seal  {
+            height: 70%;
+         }
+   main {
+      gap: 30px;
+      width: 95%;
+   }
+      .ballot_header {
+         gap: 20px;
+         display: flex;
+         align-items: center;
+         flex-direction: column;
+         justify-content: space-between;
+      }
+         .header_left {
+            width: 100%;
+            
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+         }
+            .header_left h1 {
+               font-size: 18px;
+            }
+            .header_left h2 {
+               font-size: 16px;
+            }
+         .header_right{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+         }
+            .header_right h3 {
+               width: 100%;
+               text-align: center;
+               font-size: 13px;
+            }
+            .header_right h3 b{
+               width: 100%;
+               text-align: center;
+               font-size: 13px;
+            }
+            .progress-container {
+               width: 90%;
+               height: 8px;
+               background: #ccc;
+               box-sizing: border-box;
+   
+               top: 250px;
+               position: absolute;
+               z-index: 9;
+            }
+               .progress-bar {
+                  height: 8px;
+                  background: gold;
+                  box-sizing: border-box;
+                  border: 1px solid rgb(62, 98, 19);
+                  width: 1%;
+               }
+               form {
+                  padding: 10px;
+               }
+                  fieldset {
+                     gap: 5px;
+                     padding: 10px;
+                  }
+                     legend {
+                        font-size: 15px;
+                     }
+                        input[type="radio"] + label {
+                           padding: 5px;
+                           width: 46%;
+                           gap: 5px;
+                        }
+                        input[type="radio"] + label h4{
+                           padding: 0;
+                           width: 100%;
+                           font-size: 12px;
+                        }
+                        .candidate_name h2 {
+                           font-size: 14px;
+                        }
+                        .candidate_name h4 {
+                           font-size: 10px;
+                        }
+                        input[type="submit"] {
+                           width: 100px;
+                           height: 50px;
+                        }
+}
