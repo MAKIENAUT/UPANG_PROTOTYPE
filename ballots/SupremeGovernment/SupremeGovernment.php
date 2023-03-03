@@ -23,7 +23,7 @@ $result = mysqli_query($conn, $sql);
 $row = $result->fetch_assoc();
 $status_check = $row["status"];
 
-if ($status_check == 'finished'){
+if ($status_check == 'finished') {
    $_SESSION['logged_in'] = false;
    header('Location: ../../voter_login.php');
    exit;
@@ -37,15 +37,8 @@ if ($status_check == 'finished'){
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link 
-      rel="stylesheet" 
-      href="SupremeGovernment.css"
-   />
-   <link 
-      rel="icon" 
-      type="image/x-icon" 
-      href="photos/phinma_seal.png"
-   />
+   <link rel="stylesheet" href="SupremeGovernment.css" />
+   <link rel="icon" type="image/x-icon" href="photos/phinma_seal.png" />
    <script src="SupremeGovernment.js"></script>
    <title>SSG BALLOT</title>
 </head>
@@ -72,16 +65,24 @@ if ($status_check == 'finished'){
 
          <div class="header_right">
             <h3>
-               Voter: <b><?php echo $lastname . " " . $student_number ?></b>
+               Voter: <b>
+                  <?php echo $lastname . " " . $student_number ?>
+               </b>
             </h3>
             <h3>
-               Education Level: <b><?php echo ucfirst($education) ?></b>
+               Education Level: <b>
+                  <?php echo ucfirst($education) ?>
+               </b>
             </h3>
             <h3>
-               Course Code: <b><?php echo $course_code ?></b>
+               Course Code: <b>
+                  <?php echo $course_code ?>
+               </b>
             </h3>
             <h3>
-               Year Level: <b><?php echo $year_level ?></b>
+               Year Level: <b>
+                  <?php echo $year_level ?>
+               </b>
             </h3>
          </div>
       </div>
@@ -149,7 +150,7 @@ if ($status_check == 'finished'){
                               // Redirect user to voters_receipt.php after all candidates have been added
                               // Set selected candidates array as session variable
                               $_SESSION['selected_candidates'] = $selected_candidates;
-                              
+
                            } else {
                               echo "Error updating changing the student's vote status: " . mysqli_error($conn);
                            }
@@ -159,26 +160,31 @@ if ($status_check == 'finished'){
                      }
                   }
                }
-
                // Redirect user to voters_receipt.php after all candidates have been added
                header("Location: ../../voters/voters_receipt.php");
                exit();
-
-               
             }
 
             // Close database connection
             mysqli_close($conn);
 
+            // Keep track of how many checkboxes have been selected
+            $checkboxCount = 0;
+
             // Generate the form
             for ($i = 0; $i < count($positions); $i++) {
                $position = array_keys($positions)[$i];
                $candidates = $positions[$position];
-               $inputname = 'radio';
+
+               if ($position == 'Government_Public_Information_Officer') {
+                  $inputname = 'checkbox';
+               } else {
+                  $inputname = 'radio';
+               }
 
                //! CONDITION 1️
                if ($year_level == 11 && !str_contains($course_code, 'ABM') && !str_contains($course_code, 'HUMSS')) {
-                  if ($position == 'Government_ABM_Representative' ) {
+                  if ($position == 'Government_ABM_Representative') {
                      continue;
                   }
                   if ($position == 'Government_HUMSS_Representative') {
@@ -191,7 +197,7 @@ if ($status_check == 'finished'){
 
                //! CONDITION 2
                if ($year_level == 12 && !str_contains($course_code, 'ABM') && !str_contains($course_code, 'HUMSS')) {
-                  if ($position == 'Government_ABM_Representative' ) {
+                  if ($position == 'Government_ABM_Representative') {
                      continue;
                   }
                   if ($position == 'Government_HUMSS_Representative') {
@@ -218,7 +224,7 @@ if ($status_check == 'finished'){
 
                //! CONDITION 5
                if ($year_level == 11 && str_contains($course_code, 'HUMSS')) {
-                  if ($position == 'Government_ABM_Representative' ) {
+                  if ($position == 'Government_ABM_Representative') {
                      continue;
                   }
                   if ($position == 'Government_GRADE_12_Representative') {
@@ -228,14 +234,14 @@ if ($status_check == 'finished'){
 
                //! CONDITION 6
                if ($year_level == 12 && str_contains($course_code, 'HUMSS')) {
-                  if ($position == 'Government_ABM_Representative' ) {
+                  if ($position == 'Government_ABM_Representative') {
                      continue;
                   }
                }
-               
+
                //! CONDITION 7
                if (str_contains($course_code, 'JR-HI')) {
-                  if ($position == 'Government_ABM_Representative' ) {
+                  if ($position == 'Government_ABM_Representative') {
                      continue;
                   }
                   if ($position == 'Government_GRADE_12_Representative') {
@@ -247,31 +253,33 @@ if ($status_check == 'finished'){
                }
 
                ?>
+
                <fieldset>
                   <legend>
-                     <?php 
-                        $renamed_position = str_replace("_", " ", $position);
-                        echo str_replace("Government", "", $renamed_position);
+                     <?php
+                     $renamed_position = str_replace("_", " ", $position);
+                     echo str_replace("Council", " ", $renamed_position);
                      ?>
                   </legend>
-                  <input type='hidden' name='$position'>
+                  <input type='hidden' name='<?php echo $position ?>'>
                   <?php
                   for ($j = 0; $j < count($candidates); $j++) {
                      $candidate = $candidates[$j]['candidate'];
                      $party = $candidates[$j]['party'];
                      $lastname = strstr($candidate, ',', true);
                      $firstname = substr(strstr($candidate, ','), 1);
-
                      echo "<input
-                          id='$candidate'
-                          type='$inputname'
-                          value='$candidate'
-
-                              name='{$position}[]' 
+                              id='$candidate'
+                              type='$inputname'
+                              value='$candidate'
+                              name='{$position}[]'
+                              onchange='handleCheckboxChange(this, \"$inputname\", 2)'
                            >";
                      ?>
                      <label for='<?php echo $candidate ?>'>
-                        <h4><?php echo $party ?></h4>
+                        <h4>
+                           <?php echo $party ?>
+                        </h4>
                         <img src="../../photos/SSG-Photos/<?php echo $lastname ?>.png">
                         <div class="candidate_name">
                            <h2>
@@ -286,10 +294,28 @@ if ($status_check == 'finished'){
                   }
                   ?>
                </fieldset>
+
                <?php
             }
             ?>
-            <input type="submit" name="submit" value="Submit" onclick="return confirm('Are you sure you want to submit this ballot?')">
+
+            <script>
+               function handleCheckboxChange(checkbox, inputType, maxChecked) {
+                  var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+                  var checkedCount = 0;
+                  checkboxes.forEach(function (box) {
+                     if (box.checked) {
+                        checkedCount++;
+                     }
+                  });
+                  if (checkedCount > maxChecked) {
+                     checkbox.checked = false;
+                  }
+               }
+            </script>
+
+            <input type="submit" name="submit" value="Submit"
+               onclick="return confirm('Are you sure you want to submit this ballot?')">
          </form>
       </div>
    </main>

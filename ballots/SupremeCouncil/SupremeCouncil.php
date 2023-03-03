@@ -24,7 +24,7 @@ $result = mysqli_query($conn, $sql);
 $row = $result->fetch_assoc();
 $status_check = $row["status"];
 
-if ($status_check == 'finished'){
+if ($status_check == 'finished') {
    $_SESSION['logged_in'] = false;
    header('Location: ../../voter_login.php');
    exit;
@@ -43,7 +43,7 @@ if ($status_check == 'finished'){
    <title>SSC BALLOT</title>
 </head>
 
-<body >
+<body>
    <header>
       <div class="logos">
          <img class="phinma_seal" src="../../photos/phinma_seal.png">
@@ -142,10 +142,13 @@ if ($status_check == 'finished'){
                         if (mysqli_query($conn, $sql)) {
                            $sql2 = "UPDATE students SET status='finished', time=NOW() WHERE student_number='$student_number'";
                            if (mysqli_query($conn, $sql2)) {
-                              // Redirect user to voters_receipt.php after all candidates have been added
-                              // Set selected candidates array as session variable
-                              $_SESSION['selected_candidates'] = $selected_candidates;
+
                               
+                              $_SESSION['lastname'] = $lastname;
+                              $_SESSION['firstname'] = $firstname;
+                              $_SESSION['course_code'] = $course_code;
+                              $_SESSION['student_number'] = $student_number;
+                              $_SESSION['selected_candidates'] = $selected_candidates;
                            } else {
                               echo "Error updating changing the student's vote status: " . mysqli_error($conn);
                            }
@@ -162,13 +165,23 @@ if ($status_check == 'finished'){
             // Close database connection
             mysqli_close($conn);
 
+            // Keep track of how many checkboxes have been selected
+            $checkboxCount = 0;
+
             // Generate the form
             for ($i = 0; $i < count($positions); $i++) {
                $position = array_keys($positions)[$i];
                $candidates = $positions[$position];
-               $inputname = 'radio';
 
-            ?>
+               if ($position == 'Council_Public_Information_Officer') {
+                  $inputname = 'checkbox';
+               } else {
+                  $inputname = 'radio';
+               }
+
+               ?>
+
+
                <fieldset>
                   <legend>
                      <?php
@@ -176,7 +189,7 @@ if ($status_check == 'finished'){
                      echo str_replace("Council", " ", $renamed_position);
                      ?>
                   </legend>
-                  <input type='hidden' name='$position'>
+                  <input type='hidden' name='<?php echo $position ?>'>
                   <?php
                   for ($j = 0; $j < count($candidates); $j++) {
                      $candidate = $candidates[$j]['candidate'];
@@ -184,12 +197,12 @@ if ($status_check == 'finished'){
                      $lastname = strstr($candidate, ',', true);
                      $firstname = substr(strstr($candidate, ','), 1);
                      echo "<input
-                          id='$candidate'
-                          type='$inputname'
-                          value='$candidate'
-
-                              name='{$position}[]' 
-                           >";
+                           id='$candidate'
+                           type='$inputname'
+                           value='$candidate'
+                           name='{$position}[]'
+                           onchange='handleCheckboxChange(this, \"$inputname\", 2)'
+                        >";
                      ?>
                      <label for='<?php echo $candidate ?>'>
                         <h4>
@@ -209,10 +222,26 @@ if ($status_check == 'finished'){
                   }
                   ?>
                </fieldset>
+
                <?php
             }
             ?>
-            <input type="submit" name="submit" value="Submit" onclick="return confirm('Are you sure you want to submit this ballot?')">
+            <script>
+               function handleCheckboxChange(checkbox, inputType, maxChecked) {
+                  var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+                  var checkedCount = 0;
+                  checkboxes.forEach(function (box) {
+                     if (box.checked) {
+                        checkedCount++;
+                     }
+                  });
+                  if (checkedCount > maxChecked) {
+                     checkbox.checked = false;
+                  }
+               }
+            </script>
+            <input type="submit" name="submit" value="Submit"
+               onclick="return confirm('Are you sure you want to submit this ballot?')">
          </form>
       </div>
    </main>

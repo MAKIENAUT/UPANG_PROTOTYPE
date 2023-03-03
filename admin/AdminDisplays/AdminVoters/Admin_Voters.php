@@ -98,7 +98,7 @@ $table = 'students'; // Replace with your own table name
       $search = isset($_GET['search']) ? $_GET['search'] : '';
 
       // Build SQL query
-      $sql = "SELECT id, student_number, lastname, firstname, middlename, course_code, year_level, education, student_email, status FROM $table";
+      $sql = "SELECT id, student_number, lastname, firstname, middlename, course_code, year_level, education, student_email, status, time FROM $table";
       if (!empty($search)) {
          $sql .= " WHERE student_number LIKE '%$search%' OR lastname LIKE '%$search%' OR firstname LIKE '%$search%' OR middlename LIKE '%$search%' OR course_code LIKE '%$search%' OR year_level LIKE '%$search%' OR education LIKE '%$search%' OR student_email LIKE '%$search%' OR status LIKE '%$search%'";
       }
@@ -118,6 +118,7 @@ $table = 'students'; // Replace with your own table name
             <th>Education</th>
             <th>Student Email</th>
             <th>Status</th>
+            <th>Time Voted</th>
             <th>Actions</th>
          </tr>
          <?php
@@ -149,6 +150,9 @@ $table = 'students'; // Replace with your own table name
                </td>
                <td>
                   <?php echo $row['status']; ?>
+               </td>
+               <td>
+                  <?php echo $row['time']; ?>
                </td>
                <td>
                   <a href="edit.php?id=<?php echo $row['id']; ?>">Edit</a> | 
