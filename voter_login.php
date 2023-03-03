@@ -1,8 +1,9 @@
 <?php
    // Start or Initialize the session
    session_start();
-
    require_once "database/database.php";
+
+   
 
    $student_number = $password = "";
    $password_err = $student_number_err = $student_email_err = $login_err = "";
@@ -89,14 +90,21 @@
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-   <link rel="stylesheet" href="voter_login.css">
+   <link 
+      rel="stylesheet" 
+      href="voter_login.css"
+   />
    <link 
       rel="stylesheet" 
       crossorigin="anonymous" 
       referrerpolicy="no-referrer" 
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
       integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+   />
+   <link 
+      rel="icon" 
+      type="image/x-icon" 
+      href="photos/phinma_seal.png"
    />
    <title>PRECINCT</title>
 </head>
@@ -130,7 +138,7 @@
                <div class="form_fields">
                   <div class="input_fields">
                      <label for="student_number">Student Number: </label>
-                     <input type="text" name="student_number" placeholder="XX-XX-XXXXX" />
+                     <input type="text" name="student_number" placeholder="XX - XX - XXXXX" />
                   </div>
 
                   <div class="input_fields">
@@ -157,7 +165,7 @@
             </fieldset>
          </form>
       </div>
-   </main>
+   </main>  
 </body>
 
 </html>

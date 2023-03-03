@@ -118,6 +118,7 @@ body {
                   padding: 0;
                   color: white;
                   font-size: 18px;
+                  box-sizing: border-box;
                   font-family: "Merriweather", "Georgia", serif;
 
                }
@@ -206,3 +207,64 @@ body {
                         transition: all 0.25s;
                      }
                      
+@media only screen and (max-width: 600px){
+body {
+   gap: 10px;
+   padding: 0;
+   justify-content: center;
+}
+   header {
+      width: 100%;
+      height: 150px;
+   }
+      .logos {
+         width: 100%;
+         height: 100%;
+         display: flex;
+         padding: 0 10px;
+      }
+         .main_title {
+            height: 100%;
+         }
+            .main_title h1 {
+               width: 80%;
+               font-size: 28px;
+               text-align: center;
+            }
+            .main_title h3 {
+               font-size: 15px;
+               text-align: center;
+            }
+         .phinma_seal, 
+         .upang_seal  {
+            height: 60%;
+         }
+   main {
+      width: 90%;
+   }
+      .login_form {
+         width: 100%;
+      }
+         legend {
+            height: 30px;
+            font-size: 15px;
+         }
+            .login_error {
+               width: 80%;
+               font-size: 14px;
+               padding: 0 15px;
+               text-align: center;
+            }
+            .form_fields {
+               gap: 5px;
+            }
+               .input_fields {
+                  height: 60px;
+               }
+                     .input_fields label {
+                        font-size: 15px;
+                     }
+                     .input_fields input {
+                        font-size: 12px;
+                     }
+}

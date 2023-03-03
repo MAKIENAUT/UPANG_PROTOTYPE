@@ -1,9 +1,32 @@
-
 // When the user scrolls the page, execute myFunction
 window.onscroll = function () {
   myFunction();
   scrollFunction();
 };
+
+// // Check if the page is hidden
+// document.addEventListener('visibilitychange', function() {
+//   if (document.hidden) {
+//     document.body.style.filter = 'blur(5px)'; // Blur the screen
+//   } else {
+//     document.body.style.filter = 'none'; // Unblur the screen
+//   }
+// });
+
+// // Check if the page is hidden for more than 1 second, which may indicate a screenshot
+// setInterval(function() {
+//   if (document.hidden) {
+//     setTimeout(function() {
+//       if (document.hidden) {
+//         if (confirm("We detected that you've changed tabs in your browser. \n We are then obliged to cancel your session \n as per security puposes and prevention of screenshot in ballot proper") == true) {
+//           document.location.href = "../../voter_login.php";
+//         } else {
+//           document.location.href = "../../voter_login.php";
+//         }
+//       }
+//     }, 1000);
+//   }
+// }, 1000);
 
 function myFunction() {
   var winScroll = document.body.scrollTop || document.documentElement.scrollTop;

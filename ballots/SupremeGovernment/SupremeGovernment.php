@@ -37,7 +37,15 @@ if ($status_check == 'finished'){
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" href="SupremeGovernment.css" />
+   <link 
+      rel="stylesheet" 
+      href="SupremeGovernment.css"
+   />
+   <link 
+      rel="icon" 
+      type="image/x-icon" 
+      href="photos/phinma_seal.png"
+   />
    <script src="SupremeGovernment.js"></script>
    <title>SSG BALLOT</title>
 </head>

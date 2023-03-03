@@ -2,6 +2,7 @@
 session_start();
 require_once "../../database/database.php";
 
+
 // Check if the user is logged in
 if (!isset($_SESSION['logged_in']) || !$_SESSION['logged_in']) {
    $_SESSION['logged_in'] = false;
@@ -42,7 +43,7 @@ if ($status_check == 'finished'){
    <title>SSC BALLOT</title>
 </head>
 
-<body>
+<body >
    <header>
       <div class="logos">
          <img class="phinma_seal" src="../../photos/phinma_seal.png">
@@ -139,7 +140,7 @@ if ($status_check == 'finished'){
 
                         $sql = "UPDATE supreme_council SET votes = votes + 1 WHERE position = '$position' AND candidate = '$selected_candidate'";
                         if (mysqli_query($conn, $sql)) {
-                           $sql2 = "UPDATE students SET status='finished' WHERE student_number='$student_number'";
+                           $sql2 = "UPDATE students SET status='finished', time=NOW() WHERE student_number='$student_number'";
                            if (mysqli_query($conn, $sql2)) {
                               // Redirect user to voters_receipt.php after all candidates have been added
                               // Set selected candidates array as session variable
@@ -154,14 +155,10 @@ if ($status_check == 'finished'){
                      }
                   }
                }
-
                // Redirect user to voters_receipt.php after all candidates have been added
                header("Location: ../../voters/voters_receipt.php");
                exit();
-
-               
             }
-
             // Close database connection
             mysqli_close($conn);
 
@@ -171,7 +168,7 @@ if ($status_check == 'finished'){
                $candidates = $positions[$position];
                $inputname = 'radio';
 
-               ?>
+            ?>
                <fieldset>
                   <legend>
                      <?php
