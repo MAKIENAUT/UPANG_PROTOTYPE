@@ -32,9 +32,9 @@
             session_start();
             $_SESSION['logged_in'] = true;
             $_SESSION['username'] = $username;
+            $_SESSION['clearance'] = $row['clearance'];
             header('Location: ../AdminDisplays/AdminDashboard/Admin_Dashboard.php');
             exit;
-
          } else {
             $login_err = "Login failed. Incorrect password.";
          }

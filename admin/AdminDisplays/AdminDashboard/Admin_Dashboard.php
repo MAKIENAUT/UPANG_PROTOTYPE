@@ -10,6 +10,12 @@ if (!isset($_SESSION['logged_in']) || !$_SESSION['logged_in']) {
 
 //* Receive session message from login by storing it in variable
 $username = $_SESSION['username'];
+$clearance = $_SESSION['clearance'];
+
+
+if ($clearance == 'Admin') {
+   echo "<script> document.getElementById('manage_options').style.display = 'none'; </script>";
+}
 
 // Count the number of unique positions in the "supreme_council" table
 $result_council = mysqli_query($conn, "SELECT COUNT(DISTINCT position) as count FROM supreme_council");
@@ -60,7 +66,7 @@ $count_finished = $row_finished['count'];
    <script type="text/javascript" src="Admin_Dashboard.js"></script>
 </head>
 
-<body onload="date_display(), show_tab_position(1)">
+<body onload="date_display(), show_tab_position(1), hide_admin()">
 
    <nav>
       <div class="nav_head">
@@ -72,7 +78,7 @@ $count_finished = $row_finished['count'];
             <h2>
                <?php echo $username; ?>
             </h2>
-            <h4>Super Admin</h4>
+            <h4><?php echo $clearance ?></h4>
          </div>
       </div>
 
@@ -98,7 +104,7 @@ $count_finished = $row_finished['count'];
                <p>Result</p>
             </button>
          </div>
-         <div class="manage_options">
+         <div class="manage_options" id="manage_options">
             <h1>Manage</h1>
             <button class="voters" id="voters" onclick="show(3)">
                <div class="button_icon">

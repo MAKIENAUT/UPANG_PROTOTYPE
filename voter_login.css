@@ -8,8 +8,8 @@ body {
    box-sizing: border-box;
    background-size: cover;
    background-repeat: repeat;
-   background-position: center;
-   background-image: url(photos/background.jpg);
+   background-position-y: -100px;
+   background-image: url(photos/Reference.png);
 
    gap: 20px;
    display: flex;
@@ -116,11 +116,13 @@ body {
                .login_error {
                   margin: 0;
                   padding: 0;
-                  color: white;
+                  width: 90%;
+                  height: 40px;
                   font-size: 18px;
+                  text-align: center;
                   box-sizing: border-box;
+                  color: rgb(255, 255, 255);
                   font-family: "Merriweather", "Georgia", serif;
-
                }
                .form_fields {
                   width: 100%;
@@ -212,6 +214,9 @@ body {
    gap: 10px;
    padding: 0;
    justify-content: center;
+   background-size: contain;
+   background-position-y: 1px;
+   background-image: url(photos/1.png);
 }
    header {
       width: 100%;

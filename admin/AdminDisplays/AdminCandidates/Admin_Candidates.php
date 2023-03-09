@@ -8,10 +8,12 @@ if (!isset($_SESSION['logged_in']) || !$_SESSION['logged_in']) {
    exit;
 }
 
+if ($_SESSION['clearance'] == 'Admin') {
+   header('Location: ../../AdminDisplays/AdminDashboard/Admin_Dashboard.php');
+   exit;
+}
 //* Receive session message from login by storing it in variable
 $username = $_SESSION['username'];
-
-
 ?>
 
 <!DOCTYPE html>
@@ -140,7 +142,7 @@ $username = $_SESSION['username'];
                   }
                   ?>
                   <div id="<?php echo $position; ?>" style="width:48%; height:250px; background-color: transparent;">
-                     <div>a</div>
+                     <div>Please Wait</div>
                   </div>
                   <script>
                      google.charts.load('current', { 'packages': ['corechart'] });
@@ -219,7 +221,7 @@ $username = $_SESSION['username'];
                   }
                   ?>
                   <div id="<?php echo $position; ?>" style="width:48%; height:250px; background-color: transparent;">
-                     <div>a</div>
+                     <div>Please Wait.</div>
                   </div>
                   <script>
                      google.charts.load('current', { 'packages': ['corechart'] });

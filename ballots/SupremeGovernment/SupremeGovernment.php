@@ -147,10 +147,13 @@ if ($status_check == 'finished') {
                         if (mysqli_query($conn, $sql)) {
                            $sql2 = "UPDATE students SET status='finished' WHERE student_number='$student_number'";
                            if (mysqli_query($conn, $sql2)) {
-                              // Redirect user to voters_receipt.php after all candidates have been added
-                              // Set selected candidates array as session variable
+                              $_SESSION['lastname'] = $lastname;
+                              $_SESSION['firstname'] = $firstname;
+                              $_SESSION['course_code'] = $course_code;
+                              $_SESSION['student_number'] = $student_number;
                               $_SESSION['selected_candidates'] = $selected_candidates;
 
+                              $_SESSION['ballot_type'] = 'SSG';
                            } else {
                               echo "Error updating changing the student's vote status: " . mysqli_error($conn);
                            }
@@ -176,7 +179,11 @@ if ($status_check == 'finished') {
                $position = array_keys($positions)[$i];
                $candidates = $positions[$position];
 
-               if ($position == 'Government_Public_Information_Officer') {
+               if (
+                  $position == 'Government_Peace_Officer' ||
+                  $position == 'Government_Public_Information_Officer' ||
+                  $position == 'Government_Student_Outreach_Community_Officer'
+               ) {
                   $inputname = 'checkbox';
                } else {
                   $inputname = 'radio';
@@ -300,19 +307,22 @@ if ($status_check == 'finished') {
             ?>
 
             <script>
-               function handleCheckboxChange(checkbox, inputType, maxChecked) {
-                  var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+               function handleCheckboxChange(checkbox, inputType) {
+                  var checkboxes = document.querySelectorAll('input[type="' + inputType + '"]');
                   var checkedCount = 0;
                   checkboxes.forEach(function (box) {
                      if (box.checked) {
-                        checkedCount++;
+                        if (box.name === checkbox.name) {
+                           checkedCount++;
+                        }
                      }
                   });
-                  if (checkedCount > maxChecked) {
+                  if (checkedCount > 2) {
                      checkbox.checked = false;
                   }
                }
             </script>
+
 
             <input type="submit" name="submit" value="Submit"
                onclick="return confirm('Are you sure you want to submit this ballot?')">

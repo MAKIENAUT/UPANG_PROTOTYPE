@@ -10,7 +10,7 @@ if (!isset($_SESSION['logged_in']) || !$_SESSION['logged_in']) {
 
 //* Receive session message from login by storing it in variable
 $username = $_SESSION['username'];
-
+$clearance = $_SESSION['clearance'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -124,7 +124,7 @@ $username = $_SESSION['username'];
                            <?php $renamed_position = str_replace("_", " ", $position);
                            echo str_replace("Council", "", $renamed_position); ?>
                         </h2>
-                        <img src="../../../photos/<?php echo $lastname ?>.png">
+                        <img src="../../../photos/SSC-Photos/<?php echo $lastname ?>.png">
                         <p>
                            <b>
                               <?php echo $row['candidate']; ?>
@@ -162,7 +162,10 @@ $username = $_SESSION['username'];
                );
 
                foreach ($positions as $position) {
-                  if ($position === "Government_Public_Information_Officer") {
+                  if (  $position == 'Government_Peace_Officer' ||
+                        $position == 'Government_Public_Information_Officer' || 
+                        $position == 'Government_Student_Outreach_Community_Officer'
+                     ) {
                      $sql2 = "SELECT candidate, votes FROM supreme_government WHERE position = '$position' ORDER BY votes DESC LIMIT 2";
                   } else {
                      $sql2 = "SELECT candidate, votes FROM supreme_government WHERE position = '$position' AND votes = (SELECT MAX(votes) FROM supreme_government WHERE position = '$position')";

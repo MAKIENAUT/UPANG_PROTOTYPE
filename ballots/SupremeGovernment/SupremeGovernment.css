@@ -7,10 +7,10 @@ body {
    width: 100%;
    box-sizing: border-box;
    background-color: white;
-   background-size: cover;
+   background-size: contain;
    background-repeat: repeat;
-   background-position: center;
-   background-image: url(../../photos/background.jpg);
+   background-position-y: 1px;
+   background-image: url(../../photos/Reference.png);
 
    gap: 15px;
    display: flex;
@@ -275,6 +275,10 @@ body {
 
    body{
       padding: 0;
+      justify-content: center;
+      background-size: contain;
+      background-position-y: 1px;
+      background-image: url(../../photos/1.png);
    }
       header {
          height: 75px;

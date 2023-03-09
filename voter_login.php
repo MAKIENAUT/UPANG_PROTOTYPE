@@ -1,13 +1,21 @@
 <?php
-   // Start or Initialize the session
-   session_start();
-   require_once "database/database.php";
+// Start or Initialize the session
+session_start();
 
-   
 
-   $student_number = $password = "";
-   $password_err = $student_number_err = $student_email_err = $login_err = "";
 
+require_once "database/database.php";
+
+$student_number = $password = "";
+$password_err = $student_number_err = $student_email_err = $login_err = "";
+
+// Check if login is disabled
+$current_time = time();
+$disable_login_time = strtotime("March 19, 2023 11:59 PM");
+if ($current_time >= $disable_login_time) {
+   $login_err = "Login failed due to cutoff";
+   Session_destroy();
+} else {
    if ($_SERVER["REQUEST_METHOD"] == "POST") {
       //! Check if student number is empty
       if (empty(trim($_POST["student_number"]))) {
@@ -35,7 +43,7 @@
 
       if ($result->num_rows > 0) {
          $hashed_password = $row['password'];
-         
+
          //! Check if the hashed password is correct
          if (password_verify($password, $hashed_password)) {
             //! Declare columns that are needed for ballot.
@@ -51,7 +59,7 @@
             //! Check the voter's status: pending => vote || finished => can't vote
             if ($status === "pending") {
                //! Declare $_SESSION variables to send  voter information to ballot.
-               $_SESSION['logged_in'] = true;   //! Tell the Ballot that user is now logged in.
+               $_SESSION['logged_in'] = true; //! Tell the Ballot that user is now logged in.
                $_SESSION['lastname'] = $lastname;
                $_SESSION['firstname'] = $firstname;
                $_SESSION['education'] = $education;
@@ -61,7 +69,7 @@
                $_SESSION['student_number'] = $student_number;
                $_SESSION['student_email'] = $student_email;
 
-                //! See if voter is in tertiary (✔️ = SSC || ❌ = SSG)
+               //! See if voter is in tertiary (✔️ = SSC || ❌ = SSG)
                if ($education == "tertiary") {
                   header('Location: ballots/SupremeCouncil/SupremeCouncil.php');
                   exit;
@@ -78,9 +86,9 @@
       } else {
          $login_err = "Login failed. Incorrect Student Number.";
       }
-      $conn->close();
    }
-   
+   $conn->close();
+}
 ?>
 
 <!DOCTYPE html>
@@ -90,26 +98,16 @@
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link 
-      rel="stylesheet" 
-      href="voter_login.css"
-   />
-   <link 
-      rel="stylesheet" 
-      crossorigin="anonymous" 
-      referrerpolicy="no-referrer" 
+   <link rel="stylesheet" href="voter_login.css" />
+   <link rel="stylesheet" crossorigin="anonymous" referrerpolicy="no-referrer"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
-   />
-   <link 
-      rel="icon" 
-      type="image/x-icon" 
-      href="photos/phinma_seal.png"
-   />
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" />
+   <link rel="icon" type="image/x-icon" href="photos/phinma_seal.png" />
+   <script src="voter_login.js"></script>
    <title>PRECINCT</title>
 </head>
 
-<body>
+<body onload="check_error()">
    <header>
       <div class="logos">
          <img class="phinma_seal" src="photos/phinma_seal.png">
@@ -126,13 +124,19 @@
          <form name="login" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
             <fieldset>
                <legend>Voter's Login</legend>
-               <p class="login_error">
+               <p class="login_error" id="login_error" onchange="check_error()">
                   <?php
-                     if (!empty($login_err)) {
-                        echo $login_err;
-                     } else {
-                        echo "Please Enter the required fields and use the provided format.";
-                     }
+                  if (!empty($login_err)) {
+                     echo $login_err;
+                     echo "<style>
+                                 .login_error {
+                                    background-color: rgb(255, 255, 255);
+                                    color: red;
+                                 }
+                              </style>";
+                  } else {
+                     echo "Please Enter the required fields and use the provided format.";
+                  }
                   ?>
                </p>
                <div class="form_fields">
@@ -151,12 +155,7 @@
                      <input type="password" name="password" placeholder="Enter Provided Password:" />
                   </div>
                </div>
-               <button 
-                  id="submit" 
-                  name="submit" 
-                  type="submit" 
-                  onclick="resetForm()"
-               >
+               <button id="submit" name="submit" type="submit" onclick="resetForm()">
                   LOGIN
                </button>
                <p class="admin_login">
@@ -165,7 +164,7 @@
             </fieldset>
          </form>
       </div>
-   </main>  
+   </main>
 </body>
 
 </html>

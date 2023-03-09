@@ -7,6 +7,11 @@ if (!isset($_SESSION['logged_in']) || !$_SESSION['logged_in']) {
    exit;
 }
 
+if ($_SESSION['clearance'] == 'Admin') {
+   header('Location: ../../AdminDisplays/AdminDashboard/Admin_Dashboard.php');
+   exit;
+}
+
 //* Receive session message from login by storing it in variable
 $username = $_SESSION['username'];
 
@@ -21,8 +26,7 @@ $table = 'students'; // Replace with your own table name
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <link rel="stylesheet" href="Admin_Voters.css">
-   <link rel="stylesheet" 
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
       integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
       crossorigin="anonymous" referrerpolicy="no-referrer" />
    <title>COMELEC ADMIN</title>
@@ -100,13 +104,20 @@ $table = 'students'; // Replace with your own table name
       // Build SQL query
       $sql = "SELECT id, student_number, lastname, firstname, middlename, course_code, year_level, education, student_email, status, time FROM $table";
       if (!empty($search)) {
-         $sql .= " WHERE student_number LIKE '%$search%' OR lastname LIKE '%$search%' OR firstname LIKE '%$search%' OR middlename LIKE '%$search%' OR course_code LIKE '%$search%' OR year_level LIKE '%$search%' OR education LIKE '%$search%' OR student_email LIKE '%$search%' OR status LIKE '%$search%'";
+         // Split search string into individual words
+         $keywords = preg_split('/\s+/', $search);
+         $conditions = array();
+         foreach ($keywords as $keyword) {
+            $conditions[] = "student_number LIKE '%$keyword%' OR lastname LIKE '%$keyword%' OR firstname LIKE '%$keyword%' OR middlename LIKE '%$keyword%' OR course_code LIKE '%$keyword%' OR year_level LIKE '%$keyword%' OR education LIKE '%$keyword%' OR student_email LIKE '%$keyword%' OR status LIKE '%$keyword%'";
+         }
+         $sql .= " WHERE " . implode(' AND ', $conditions);
       }
       $sql .= " LIMIT $records_per_page OFFSET $offset";
 
       // Execute SQL query
       $result = $conn->query($sql);
       ?>
+
       <table>
          <tr>
             <th>Student Number</th>
@@ -119,12 +130,11 @@ $table = 'students'; // Replace with your own table name
             <th>Student Email</th>
             <th>Status</th>
             <th>Time Voted</th>
-            <th>Actions</th>
          </tr>
          <?php
          while ($row = $result->fetch_assoc()) { ?>
             <tr>
-               <td>
+               <td class="student_number">
                   <?php echo $row['student_number']; ?>
                </td>
                <td>
@@ -139,30 +149,48 @@ $table = 'students'; // Replace with your own table name
                <td>
                   <?php echo $row['course_code']; ?>
                </td>
-               <td>
+               <td class="year_level">
                   <?php echo $row['year_level']; ?>
                </td>
                <td>
                   <?php echo $row['education']; ?>
                </td>
                <td>
-                  <?php echo $row['student_email']; ?>
+                  <form method="POST" action="">
+                     <input type="hidden" name="student_id" value="<?php echo $row['id']; ?>">
+                     <input class="student_email" type="email" name="student_email" value="<?php echo $row['student_email']; ?>">
+                     <button class="email_submit" type="submit">Save</button>
+                  </form>
                </td>
-               <td>
+               <td >
                   <?php echo $row['status']; ?>
                </td>
-               <td>
+               <td class="time">
                   <?php echo $row['time']; ?>
-               </td>
-               <td>
-                  <a href="edit.php?id=<?php echo $row['id']; ?>">Edit</a> | 
-                  <a href="delete.php?id=<?php echo $row['id']; ?>" onclick="return confirm('Are you sure you want to delete this record?')">Delete</a>
                </td>
             </tr>
             <?php
          }
          ?>
       </table>
+
+      <?php
+      if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+         // Get the student ID and email from the form submission
+         $student_id = $_POST['student_id'];
+         $student_email = $_POST['student_email'];
+
+         $sql = "UPDATE students SET student_email='$student_email' WHERE id=$student_id";
+         $result = $conn->query($sql);
+
+         if ($result) {
+            echo "<p style='color: white;'> Email updated successfully. </p>" ;
+         } else {
+            echo "Error updating email: " . $mysqli->error;
+         }
+      }
+      ?>
+
 
       <?php
       // Build pagination links

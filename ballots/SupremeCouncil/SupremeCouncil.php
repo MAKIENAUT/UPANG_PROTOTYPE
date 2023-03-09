@@ -149,6 +149,9 @@ if ($status_check == 'finished') {
                               $_SESSION['course_code'] = $course_code;
                               $_SESSION['student_number'] = $student_number;
                               $_SESSION['selected_candidates'] = $selected_candidates;
+
+                              
+                              $_SESSION['ballot_type'] = 'SSC';
                            } else {
                               echo "Error updating changing the student's vote status: " . mysqli_error($conn);
                            }
@@ -208,7 +211,7 @@ if ($status_check == 'finished') {
                         <h4>
                            <?php echo $party ?>
                         </h4>
-                        <img src="../../photos/<?php echo $lastname ?>.png">
+                        <img src="../../photos/SSC-Photos/<?php echo $lastname ?>.png">
                         <div class="candidate_name">
                            <h2>
                               <?php echo $lastname ?>,
