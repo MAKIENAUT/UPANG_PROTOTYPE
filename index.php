@@ -1,3 +1,3 @@
 <?php
-   header('Location: admin_login.php');
+   header('Location: voter_login.php');
 ?>
