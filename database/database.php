@@ -1,8 +1,8 @@
 <?php
     //! Declare variables for server credentials
     $servername = "localhost";
-    $username = "root";
-    $password = "";
+    $username = "u546105649_admin ";
+    $password = "MakiePioneer17";
     $dbname = "phinma_election";
     // Create connection
     $conn =  mysqli_connect($servername,$username,$password,"$dbname");

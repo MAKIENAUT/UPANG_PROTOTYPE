@@ -43,7 +43,7 @@ $clearance = $_SESSION['clearance'];
             <h2>
                <?php echo $username; ?>
             </h2>
-            <h4>Super Admin</h4>
+            <h4><?php echo $clearance; ?></h4>
          </div>
       </div>
 

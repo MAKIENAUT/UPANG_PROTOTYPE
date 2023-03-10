@@ -78,7 +78,9 @@ $count_finished = $row_finished['count'];
             <h2>
                <?php echo $username; ?>
             </h2>
-            <h4><?php echo $clearance ?></h4>
+            <h4>
+               <?php echo $clearance ?>
+            </h4>
          </div>
       </div>
 
@@ -111,7 +113,7 @@ $count_finished = $row_finished['count'];
                   <i class="fa-solid fa-people-group"></i>
                </div>
                <p>Voters</p>
-            </button>          
+            </button>
             <button class="candidates" id="candidates" onclick="show(4)">
                <div class="button_icon">
                   <i class="fa-solid fa-user-plus"></i>
@@ -119,9 +121,20 @@ $count_finished = $row_finished['count'];
                <p>Candidates</p>
             </button>
          </div>
+         <div class="account_settings">
+            <h1>Account Settings</h1>
+            <div class="dropdown">
+               <i class="fa-solid fa-gear"></i>
+               <button class="dropbtn">Settings</button>
+               <div class="dropdown-content">
+                  <a href="../../AdminCommands/logout.php">Logout</a>
+                  <a href="#">Password</a>
+                  <a href="#">Admin Share</a>
+               </div>
+            </div>
+         </div>
       </div>
    </nav>
-
    <main>
       <div class="dashboard_body">
          <div class="dashboard_header">
@@ -136,19 +149,27 @@ $count_finished = $row_finished['count'];
             <h2>SUPREME STUDENT <b>COUNCIL</b></h2>
             <div class="database_info">
                <div class="positions_count">
-                  <h1><?php echo $count_council_positions; ?></h1>
+                  <h1>
+                     <?php echo $count_council_positions; ?>
+                  </h1>
                   <h3>Number of Positions:</h3>
                </div>
                <div class="candidates_count">
-                  <h1><?php echo $count_council_candidates; ?></h1>
+                  <h1>
+                     <?php echo $count_council_candidates; ?>
+                  </h1>
                   <h3>Number of Candidates:</h3>
                </div>
                <div class="total_voters">
-                  <h1><?php echo $count_total; ?></h1>
+                  <h1>
+                     <?php echo $count_total; ?>
+                  </h1>
                   <h3>Number of Total Voters:</h3>
                </div>
                <div class="voters_count">
-                  <h1><?php echo $count_finished; ?></h1>
+                  <h1>
+                     <?php echo $count_finished; ?>
+                  </h1>
                   <h3>Voters who Voted:</h3>
                   <a href="../../AdminDisplays/ManageVoters/Manage_Voters.php"></a>
                </div>
@@ -158,19 +179,27 @@ $count_finished = $row_finished['count'];
             <h2>SUPREME STUDENT <b>GOVERNMENT</b></h2>
             <div class="database_info">
                <div class="positions_count">
-                  <h1><?php echo $count_government_positions; ?></h1>
+                  <h1>
+                     <?php echo $count_government_positions; ?>
+                  </h1>
                   <h3>Number of Positions:</h3>
                </div>
                <div class="candidates_count">
-                  <h1><?php echo $count_government_candidates; ?></h1>
+                  <h1>
+                     <?php echo $count_government_candidates; ?>
+                  </h1>
                   <h3>Number of Candidates:</h3>
                </div>
                <div class="total_voters">
-                  <h1><?php echo $count_total; ?></h1>
+                  <h1>
+                     <?php echo $count_total; ?>
+                  </h1>
                   <h3>Number of Total Voters:</h3>
                </div>
                <div class="voters_count">
-                  <h1><?php echo $count_finished; ?></h1>
+                  <h1>
+                     <?php echo $count_finished; ?>
+                  </h1>
                   <h3>Voters who Voted:</h3>
                </div>
             </div>
