@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $stmt->close();
 
       // Redirect to the user's profile page
-      header('Location: ../../AdminDisplay/Admin_Dashboard.php');
+      header('Location: ../../AdminDisplays/Admin_Dashboard.php');
       exit;
    } else {
       // If old password is incorrect, show an error message
