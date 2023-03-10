@@ -1,3 +1,3 @@
 <?php
-   header('Location: ../../AdminLogin/admin_login.php');
+   header('Location: admin_login.php');
 ?>
