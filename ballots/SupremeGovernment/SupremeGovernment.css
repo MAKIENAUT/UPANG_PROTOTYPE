@@ -348,12 +348,12 @@ body {
                font-size: 13px;
             }
             .progress-container {
+               top: 260px;
                width: 90%;
                height: 8px;
                background: #ccc;
                box-sizing: border-box;
    
-               top: 250px;
                position: absolute;
                z-index: 9;
             }

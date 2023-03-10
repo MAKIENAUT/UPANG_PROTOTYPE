@@ -86,7 +86,7 @@ if ($status_check == 'finished') {
             </h3>
          </div>
       </div>
-      <div class="progress-container" id="progress-container">
+      <div class="progress-container" id="progress-container" style="top: 260px;">
          <div class="progress-bar" id="myBar">
 
          </div>

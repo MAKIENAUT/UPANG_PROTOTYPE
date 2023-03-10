@@ -81,7 +81,7 @@ if ($status_check == 'finished') {
             </h3>
          </div>
       </div>
-      <div class="progress-container" id="progress-container">
+      <div class="progress-container" id="progress-container" style="top: 260px;">
          <div class="progress-bar" id="myBar">
 
          </div>
@@ -143,14 +143,14 @@ if ($status_check == 'finished') {
                            $sql2 = "UPDATE students SET status='finished', time=NOW() WHERE student_number='$student_number'";
                            if (mysqli_query($conn, $sql2)) {
 
-                              
+
                               $_SESSION['lastname'] = $lastname;
                               $_SESSION['firstname'] = $firstname;
                               $_SESSION['course_code'] = $course_code;
                               $_SESSION['student_number'] = $student_number;
                               $_SESSION['selected_candidates'] = $selected_candidates;
 
-                              
+
                               $_SESSION['ballot_type'] = 'SSC';
                            } else {
                               echo "Error updating changing the student's vote status: " . mysqli_error($conn);
