@@ -133,7 +133,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       <?php endif; ?>
       <form method="post" action="">
          <label>Old Password:</label>
-         <input type="password" name="old_password" required><br><br>
+         <input type="password" name="old_password" required value=""><br><br>
          <label>New Password:</label>
          <input type="password" name="new_password" required><br><br>
          <input type="submit" value="Reset Password">
