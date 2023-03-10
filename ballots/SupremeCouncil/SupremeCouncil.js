@@ -51,7 +51,7 @@ function scrollFunction() {
     document.getElementById("progress-container").style.backgroundPosition = "center";
     document.getElementById("progress-container").style.backgroundImage = "url(../../photos/background.jpg)";
   } else {
-    document.getElementById("progress-container").style.top = "235px";
+    document.getElementById("progress-container").style.top = "260px";
     document.getElementById("progress-container").style.width = "90%";    
     document.getElementById("progress-container").style.height = "8px";
     document.getElementById("progress-container").style.display = "flex";
