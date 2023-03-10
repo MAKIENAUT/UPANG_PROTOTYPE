@@ -131,12 +131,13 @@ body {
                   color: gold;
                }
          .progress-container {
+            
+            top: 260px;
             width: 70%;
             height: 8px;
             background: #ccc;
             box-sizing: border-box;
 
-            top: 260px;
             position: absolute;
             z-index: 9;
          }
