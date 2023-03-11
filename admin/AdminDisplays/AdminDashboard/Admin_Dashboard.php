@@ -129,7 +129,6 @@ $count_finished = $row_finished['count'];
                <div class="dropdown-content">
                   <a href="../../AdminCommands/logout.php">Logout</a>
                   <a href="../../AdminCommands/Password/password_change.php">Password</a>
-                  <a href="#">Admin Share</a>
                </div>
             </div>
          </div>
