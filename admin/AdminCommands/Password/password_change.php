@@ -136,7 +136,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
          <input type="password" name="old_password" required value=""><br><br>
          <label>New Password:</label>
          <input type="password" name="new_password" required><br><br>
-         <input type="submit" value="Change Password">
+         <input type="submit" value="Change Password" onclick="return confirm('Are you sure you want to submit this ballot?')">
       </form>
    </main>
 </body>
