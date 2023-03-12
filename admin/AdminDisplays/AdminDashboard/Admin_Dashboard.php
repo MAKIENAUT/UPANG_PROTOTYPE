@@ -89,9 +89,14 @@ $count_finished = $row_finished['count'];
          <h3>Election Tally and Result</h3>
       </div>
 
-      <div class="nav_options">
+      <div class="nav_options" id="nav_options">
          <div class="main_options">
-            <h1>Elective Report</h1>
+            <div class="top_layer">
+               <h1>Elective Report</h1>
+               <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">
+                  <i class="fa-solid fa-x"></i>
+               </a>
+            </div>
             <button class="dashboard" id="dashboard" onclick="show(1)">
                <div class="button_icon">
                   <i class="fa-solid fa-gauge"></i>
@@ -125,13 +130,17 @@ $count_finished = $row_finished['count'];
             <h1>Account Settings</h1>
             <div class="dropdown">
                <i class="fa-solid fa-gear"></i>
-               <button class="dropbtn">Settings</button>
-               <div class="dropdown-content">
+               <button class="dropbtn" onclick="show_dropdown()">Settings</button>
+               <div class="dropdown-content" id="dropdown-content">
                   <a href="../../AdminCommands/logout.php">Logout</a>
                   <a href="../../AdminCommands/Password/password_change.php">Password</a>
                </div>
             </div>
          </div>
+      </div>
+      <div class="hamburger" onclick="openNav()">
+         
+         <i class="fa-solid fa-bars"></i>
       </div>
    </nav>
    <main>

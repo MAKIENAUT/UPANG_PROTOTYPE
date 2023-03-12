@@ -14,6 +14,7 @@ if ($_SESSION['clearance'] == 'Admin') {
 
 //* Receive session message from login by storing it in variable
 $username = $_SESSION['username'];
+$clearance = $_SESSION['clearance'];
 
 
 $table = 'students'; // Replace with your own table name    
@@ -35,7 +36,6 @@ $table = 'students'; // Replace with your own table name
 </head>
 
 <body onload="date_display(), show_tab_position(3)">
-
    <nav>
       <div class="nav_head">
          <div class="user_icon">
@@ -46,7 +46,9 @@ $table = 'students'; // Replace with your own table name
             <h2>
                <?php echo $username; ?>
             </h2>
-            <h4>Super Admin</h4>
+            <h4>
+               <?php echo $clearance ?>
+            </h4>
          </div>
       </div>
 
@@ -55,9 +57,14 @@ $table = 'students'; // Replace with your own table name
          <h3>Election Tally and Result</h3>
       </div>
 
-      <div class="nav_options">
+      <div class="nav_options" id="nav_options">
          <div class="main_options">
-            <h1>Elective Report</h1>
+            <div class="top_layer">
+               <h1>Elective Report</h1>
+               <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">
+                  <i class="fa-solid fa-x"></i>
+               </a>
+            </div>
             <button class="dashboard" id="dashboard" onclick="show(1)">
                <div class="button_icon">
                   <i class="fa-solid fa-gauge"></i>
@@ -72,7 +79,7 @@ $table = 'students'; // Replace with your own table name
                <p>Result</p>
             </button>
          </div>
-         <div class="manage_options">
+         <div class="manage_options" id="manage_options">
             <h1>Manage</h1>
             <button class="voters" id="voters" onclick="show(3)">
                <div class="button_icon">
@@ -87,6 +94,21 @@ $table = 'students'; // Replace with your own table name
                <p>Candidates</p>
             </button>
          </div>
+         <div class="account_settings">
+            <h1>Account Settings</h1>
+            <div class="dropdown">
+               <i class="fa-solid fa-gear"></i>
+               <button class="dropbtn" onclick="show_dropdown()">Settings</button>
+               <div class="dropdown-content" id="dropdown-content">
+                  <a href="../../AdminCommands/logout.php">Logout</a>
+                  <a href="../../AdminCommands/Password/password_change.php">Password</a>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="hamburger" onclick="openNav()">
+         
+         <i class="fa-solid fa-bars"></i>
       </div>
    </nav>
 

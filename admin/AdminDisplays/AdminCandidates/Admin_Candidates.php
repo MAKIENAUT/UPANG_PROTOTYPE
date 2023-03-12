@@ -14,6 +14,7 @@ if ($_SESSION['clearance'] == 'Admin') {
 }
 //* Receive session message from login by storing it in variable
 $username = $_SESSION['username'];
+$clearance = $_SESSION['clearance'];
 ?>
 
 <!DOCTYPE html>
@@ -36,8 +37,7 @@ $username = $_SESSION['username'];
 </head>
 
 <body onload="date_display(), show_tab_position(4)">
-
-   <nav>
+<nav>
       <div class="nav_head">
          <div class="user_icon">
             <img src="../../../photos/Man-Placeholder.png" alt="">
@@ -47,7 +47,9 @@ $username = $_SESSION['username'];
             <h2>
                <?php echo $username; ?>
             </h2>
-            <h4>Super Admin</h4>
+            <h4>
+               <?php echo $clearance ?>
+            </h4>
          </div>
       </div>
 
@@ -56,9 +58,14 @@ $username = $_SESSION['username'];
          <h3>Election Tally and Result</h3>
       </div>
 
-      <div class="nav_options">
+      <div class="nav_options" id="nav_options">
          <div class="main_options">
-            <h1>Elective Report</h1>
+            <div class="top_layer">
+               <h1>Elective Report</h1>
+               <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">
+                  <i class="fa-solid fa-x"></i>
+               </a>
+            </div>
             <button class="dashboard" id="dashboard" onclick="show(1)">
                <div class="button_icon">
                   <i class="fa-solid fa-gauge"></i>
@@ -73,7 +80,7 @@ $username = $_SESSION['username'];
                <p>Result</p>
             </button>
          </div>
-         <div class="manage_options">
+         <div class="manage_options" id="manage_options">
             <h1>Manage</h1>
             <button class="voters" id="voters" onclick="show(3)">
                <div class="button_icon">
@@ -81,7 +88,6 @@ $username = $_SESSION['username'];
                </div>
                <p>Voters</p>
             </button>
-          
             <button class="candidates" id="candidates" onclick="show(4)">
                <div class="button_icon">
                   <i class="fa-solid fa-user-plus"></i>
@@ -89,10 +95,24 @@ $username = $_SESSION['username'];
                <p>Candidates</p>
             </button>
          </div>
+         <div class="account_settings">
+            <h1>Account Settings</h1>
+            <div class="dropdown">
+               <i class="fa-solid fa-gear"></i>
+               <button class="dropbtn" onclick="show_dropdown()">Settings</button>
+               <div class="dropdown-content" id="dropdown-content">
+                  <a href="../../AdminCommands/logout.php">Logout</a>
+                  <a href="../../AdminCommands/Password/password_change.php">Password</a>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="hamburger" onclick="openNav()">
+         
+         <i class="fa-solid fa-bars"></i>
       </div>
    </nav>
-
-   <main>
+   <main id="main">
       <div class="dashboard_body">
          <div class="dashboard_header">
             <h1>CANDIDATES</h1>

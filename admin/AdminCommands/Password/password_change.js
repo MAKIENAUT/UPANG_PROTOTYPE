@@ -1,3 +1,20 @@
+function openNav() {
+   document.getElementById("nav_options").style.display = "flex";
+}
+
+function closeNav() {
+   document.getElementById("nav_options").style.display = "none";
+}
+
+function show_dropdown() {
+   var dropdown_content = document.getElementById("dropdown-content");
+   if (dropdown_content.style.display == "block") {
+      dropdown_content.style.display = "none";
+   } else {
+      dropdown_content.style.display = "block";
+   }
+}
+
 function date_display() {
    const weekday = [
       "Sunday",

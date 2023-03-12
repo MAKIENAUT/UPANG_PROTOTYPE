@@ -32,7 +32,6 @@ $clearance = $_SESSION['clearance'];
 </head>
 
 <body onload="date_display(), show_tab_position(2)">
-
    <nav>
       <div class="nav_head">
          <div class="user_icon">
@@ -43,7 +42,9 @@ $clearance = $_SESSION['clearance'];
             <h2>
                <?php echo $username; ?>
             </h2>
-            <h4><?php echo $clearance; ?></h4>
+            <h4>
+               <?php echo $clearance ?>
+            </h4>
          </div>
       </div>
 
@@ -52,9 +53,14 @@ $clearance = $_SESSION['clearance'];
          <h3>Election Tally and Result</h3>
       </div>
 
-      <div class="nav_options">
+      <div class="nav_options" id="nav_options">
          <div class="main_options">
-            <h1>Elective Report</h1>
+            <div class="top_layer">
+               <h1>Elective Report</h1>
+               <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">
+                  <i class="fa-solid fa-x"></i>
+               </a>
+            </div>
             <button class="dashboard" id="dashboard" onclick="show(1)">
                <div class="button_icon">
                   <i class="fa-solid fa-gauge"></i>
@@ -69,7 +75,7 @@ $clearance = $_SESSION['clearance'];
                <p>Result</p>
             </button>
          </div>
-         <div class="manage_options">
+         <div class="manage_options" id="manage_options">
             <h1>Manage</h1>
             <button class="voters" id="voters" onclick="show(3)">
                <div class="button_icon">
@@ -84,9 +90,23 @@ $clearance = $_SESSION['clearance'];
                <p>Candidates</p>
             </button>
          </div>
+         <div class="account_settings">
+            <h1>Account Settings</h1>
+            <div class="dropdown">
+               <i class="fa-solid fa-gear"></i>
+               <button class="dropbtn" onclick="show_dropdown()">Settings</button>
+               <div class="dropdown-content" id="dropdown-content">
+                  <a href="../../AdminCommands/logout.php">Logout</a>
+                  <a href="../../AdminCommands/Password/password_change.php">Password</a>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="hamburger" onclick="openNav()">
+         
+         <i class="fa-solid fa-bars"></i>
       </div>
    </nav>
-
    <main>
       <div class="dashboard_body">
          <div class="dashboard_header">
@@ -135,7 +155,7 @@ $clearance = $_SESSION['clearance'];
                         </p>
                      </div>
 
-                  <?php
+                     <?php
                   } else {
                      // If no results were returned, output a message
                      echo "No results found for the position of $position.<br>";
@@ -162,10 +182,11 @@ $clearance = $_SESSION['clearance'];
                );
 
                foreach ($positions as $position) {
-                  if (  $position == 'Government_Peace_Officer' ||
-                        $position == 'Government_Public_Information_Officer' || 
-                        $position == 'Government_Student_Outreach_Community_Officer'
-                     ) {
+                  if (
+                     $position == 'Government_Peace_Officer' ||
+                     $position == 'Government_Public_Information_Officer' ||
+                     $position == 'Government_Student_Outreach_Community_Officer'
+                  ) {
                      $sql2 = "SELECT candidate, votes FROM supreme_government WHERE position = '$position' ORDER BY votes DESC LIMIT 2";
                   } else {
                      $sql2 = "SELECT candidate, votes FROM supreme_government WHERE position = '$position' AND votes = (SELECT MAX(votes) FROM supreme_government WHERE position = '$position')";
@@ -191,7 +212,7 @@ $clearance = $_SESSION['clearance'];
                               <?php echo $row['votes']; ?>
                            </p>
                         </div>
-                     <?php
+                        <?php
                      }
                   } else {
                      // If no results were returned, output a message
