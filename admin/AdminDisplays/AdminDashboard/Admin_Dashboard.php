@@ -38,14 +38,23 @@ $row_government = mysqli_fetch_assoc($result_government);
 $count_government_candidates = $row_government['count'];
 
 // Count the total number of voters in the "students" table
-$result_total = mysqli_query($conn, "SELECT COUNT(*) as count FROM students");
+$result_council = mysqli_query($conn, "SELECT COUNT(*) as count FROM students WHERE education = 'tertiary'");
+$row_council = mysqli_fetch_assoc($result_council);
+$count_tertiary_students = $row_council['count'];
+
+$result_total = mysqli_query($conn, "SELECT COUNT(*) as count FROM students WHERE education = 'secondary'");
 $row_total = mysqli_fetch_assoc($result_total);
-$count_total = $row_total['count'];
+$count_secondary_students = $row_total['count'];
 
 // Count the number of voters with the status "finished" in the "students" table
-$result_finished = mysqli_query($conn, "SELECT COUNT(*) as count FROM students WHERE status = 'finished'");
+$result_finished = mysqli_query($conn, "SELECT COUNT(*) as count FROM students WHERE status = 'finished' AND education = 'tertiary'");
 $row_finished = mysqli_fetch_assoc($result_finished);
-$count_finished = $row_finished['count'];
+$count_tertiary_finished = $row_finished['count'];
+
+// Count the number of voters with the status "finished" in the "students" table
+$result_finished = mysqli_query($conn, "SELECT COUNT(*) as count FROM students WHERE status = 'finished' AND education = 'secondary'");
+$row_finished = mysqli_fetch_assoc($result_finished);
+$count__secondary_finished = $row_finished['count'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -170,13 +179,13 @@ $count_finished = $row_finished['count'];
                </div>
                <div class="total_voters">
                   <h1>
-                     <?php echo $count_total; ?>
+                     <?php echo $count_tertiary_students; ?>
                   </h1>
                   <h3>Number of Total Voters:</h3>
                </div>
                <div class="voters_count">
                   <h1>
-                     <?php echo $count_finished; ?>
+                     <?php echo $count_tertiary_finished; ?>
                   </h1>
                   <h3>Voters who Voted:</h3>
                   <a href="../../AdminDisplays/ManageVoters/Manage_Voters.php"></a>
@@ -200,13 +209,13 @@ $count_finished = $row_finished['count'];
                </div>
                <div class="total_voters">
                   <h1>
-                     <?php echo $count_total; ?>
+                     <?php echo $count_secondary_students; ?>
                   </h1>
                   <h3>Number of Total Voters:</h3>
                </div>
                <div class="voters_count">
                   <h1>
-                     <?php echo $count_finished; ?>
+                     <?php echo $count__secondary_finished; ?>
                   </h1>
                   <h3>Voters who Voted:</h3>
                </div>
